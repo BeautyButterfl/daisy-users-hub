@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { Users, UserPlus, Search, Menu } from 'lucide-react';
+import { Users, UserPlus, Search, Menu, Settings, LogOut, User } from 'lucide-react';
+import Dropdown from '@/components/ui/dropdown';
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -19,19 +20,22 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
       {/* Navigation */}
       <div className="navbar bg-base-100 shadow-lg">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <Menu className="h-5 w-5" />
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
+          <Dropdown
+            trigger={
+              <div className="btn btn-ghost lg:hidden">
+                <Menu className="h-5 w-5" />
+              </div>
+            }
+            className="lg:hidden"
+          >
+            <ul className="menu menu-sm p-2">
               {menuItems.map((item) => (
                 <li key={item.id}>
                   <button
                     onClick={() => onViewChange(item.id)}
-                    className={currentView === item.id ? 'active' : ''}
+                    className={`flex items-center gap-2 w-full text-left ${
+                      currentView === item.id ? 'active bg-primary text-primary-content' : ''
+                    }`}
                   >
                     <item.icon className="h-4 w-4" />
                     {item.label}
@@ -39,7 +43,7 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
                 </li>
               ))}
             </ul>
-          </div>
+          </Dropdown>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <Users className="h-6 w-6 text-white" />
@@ -70,11 +74,38 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
         </div>
         
         <div className="navbar-end">
-          <div className="avatar placeholder">
-            <div className="bg-primary text-primary-content rounded-full w-10">
-              <span className="text-sm">AD</span>
-            </div>
-          </div>
+          <Dropdown
+            trigger={
+              <div className="avatar placeholder cursor-pointer hover:scale-105 transition-transform">
+                <div className="bg-primary text-primary-content rounded-full w-10">
+                  <span className="text-sm">AD</span>
+                </div>
+              </div>
+            }
+            align="right"
+          >
+            <ul className="menu menu-sm p-2">
+              <li>
+                <button className="flex items-center gap-2 w-full text-left hover:bg-base-200">
+                  <User className="h-4 w-4" />
+                  Profile
+                  <span className="badge badge-primary badge-sm ml-auto">New</span>
+                </button>
+              </li>
+              <li>
+                <button className="flex items-center gap-2 w-full text-left hover:bg-base-200">
+                  <Settings className="h-4 w-4" />
+                  Settings
+                </button>
+              </li>
+              <li>
+                <button className="flex items-center gap-2 w-full text-left hover:bg-error hover:text-error-content">
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </Dropdown>
         </div>
       </div>
 

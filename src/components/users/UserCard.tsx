@@ -56,15 +56,25 @@ const UserCard = ({ user, onEdit, onDelete }: UserCardProps) => {
         
         <div className="card-actions justify-end mt-4 gap-2">
           <button
-            onClick={() => onEdit(user)}
-            className="btn btn-outline btn-primary btn-sm gap-1"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onEdit(user);
+            }}
+            className="btn btn-outline btn-primary btn-sm gap-1 hover:scale-105 transition-transform"
           >
             <Edit className="h-3 w-3" />
             Edit
           </button>
           <button
-            onClick={() => onDelete(user.id)}
-            className="btn btn-outline btn-error btn-sm gap-1"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (window.confirm('Are you sure you want to delete this user?')) {
+                onDelete(user.id);
+              }
+            }}
+            className="btn btn-outline btn-error btn-sm gap-1 hover:scale-105 transition-transform"
           >
             <Trash2 className="h-3 w-3" />
             Delete

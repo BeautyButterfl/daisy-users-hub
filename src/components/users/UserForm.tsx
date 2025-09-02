@@ -144,15 +144,19 @@ const UserForm = ({ user, onSave, onCancel }: UserFormProps) => {
           <div className="card-actions justify-end gap-3 pt-4">
             <button
               type="button"
-              onClick={onCancel}
-              className="btn btn-outline btn-neutral gap-2"
+              onClick={(e) => {
+                e.preventDefault();
+                onCancel();
+              }}
+              className="btn btn-outline btn-neutral gap-2 hover:scale-105 transition-transform"
             >
               <X className="h-4 w-4" />
               Cancel
             </button>
             <button
               type="submit"
-              className="btn btn-primary gap-2"
+              className="btn btn-primary gap-2 hover:scale-105 transition-transform"
+              disabled={Object.keys(errors).length > 0}
             >
               <Save className="h-4 w-4" />
               {user ? 'Update User' : 'Create User'}
