@@ -9,6 +9,25 @@ export default {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
+	daisyui: {
+		themes: [
+			{
+				light: {
+					"primary": "#6366f1",
+					"secondary": "#8b5cf6", 
+					"accent": "#06b6d4",
+					"neutral": "#1f2937",
+					"base-100": "#ffffff",
+					"base-200": "#f9fafb",
+					"base-300": "#f3f4f6",
+					"info": "#0ea5e9",
+					"success": "#10b981",
+					"warning": "#f59e0b",
+					"error": "#ef4444",
+				},
+			},
+		],
+	},
 	theme: {
 		container: {
 			center: true,
@@ -92,5 +111,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("daisyui")],
 } satisfies Config;
