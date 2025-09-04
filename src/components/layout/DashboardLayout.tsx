@@ -67,7 +67,7 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
             <h2 className="text-2xl font-bold text-neutral">All Users</h2>
-            <p className="text-sm text-neutral/60">3 total users</p>
+            <p className="text-sm text-neutral/60">2 total users</p>
           </div>
           
           <div className="flex flex-wrap gap-2">

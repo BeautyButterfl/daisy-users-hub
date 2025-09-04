@@ -30,13 +30,6 @@ const Index = () => {
       createdAt: '2024-01-20',
       isActive: true,
     },
-    {
-      id: '3',
-      username: 'mike_wilson',
-      email: 'mike@example.com', 
-      createdAt: '2024-01-25',
-      isActive: false,
-    },
   ]);
   const [editingUser, setEditingUser] = useState<UserData | null>(null);
   const { toast } = useToast();
