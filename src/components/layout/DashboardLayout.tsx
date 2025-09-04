@@ -89,15 +89,6 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
               <UserPlus className="h-4 w-4" />
               Add User
             </button>
-            <button
-              onClick={() => onViewChange('search')}
-              className={`btn btn-sm gap-2 ${
-                currentView === 'search' ? 'btn-primary' : 'btn-outline'
-              }`}
-            >
-              <Search className="h-4 w-4" />
-              Search Users
-            </button>
           </div>
         </div>
         
