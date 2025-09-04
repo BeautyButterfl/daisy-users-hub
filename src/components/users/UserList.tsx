@@ -35,16 +35,6 @@ const UserList = ({ users, onEdit, onDelete }: UserListProps) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-          <Users className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold text-neutral">All Users</h2>
-          <p className="text-neutral/60">{users.length} total users</p>
-        </div>
-      </div>
 
       {/* Search and Filter */}
       <div className="card bg-base-100 shadow-lg">
