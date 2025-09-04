@@ -9,41 +9,11 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayoutProps) => {
-  const menuItems = [
-    { id: 'users', label: 'All Users', icon: Users },
-    { id: 'add-user', label: 'Add User', icon: UserPlus },
-    { id: 'search', label: 'Search Users', icon: Search },
-  ];
-
   return (
     <div className="min-h-screen bg-base-200">
       {/* Navigation */}
       <div className="navbar bg-base-100 shadow-lg">
         <div className="navbar-start">
-          <Dropdown
-            trigger={
-              <div className="btn btn-ghost lg:hidden">
-                <Menu className="h-5 w-5" />
-              </div>
-            }
-            className="lg:hidden"
-          >
-            <ul className="menu menu-sm p-2">
-              {menuItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => onViewChange(item.id)}
-                    className={`flex items-center gap-2 w-full text-left ${
-                      currentView === item.id ? 'active bg-primary text-primary-content' : ''
-                    }`}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </Dropdown>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <Users className="h-6 w-6 text-white" />
@@ -53,24 +23,6 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
               <p className="text-sm text-neutral/60">User Management System</p>
             </div>
           </div>
-        </div>
-        
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-2">
-            {menuItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => onViewChange(item.id)}
-                  className={`btn btn-ghost gap-2 ${
-                    currentView === item.id ? 'btn-primary' : ''
-                  }`}
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
         
         <div className="navbar-end">
@@ -111,6 +63,44 @@ const DashboardLayout = ({ children, currentView, onViewChange }: DashboardLayou
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
+        {/* Page Header with Navigation */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral">All Users</h2>
+            <p className="text-sm text-neutral/60">3 total users</p>
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => onViewChange('users')}
+              className={`btn btn-sm gap-2 ${
+                currentView === 'users' ? 'btn-primary' : 'btn-outline'
+              }`}
+            >
+              <Users className="h-4 w-4" />
+              All Users
+            </button>
+            <button
+              onClick={() => onViewChange('add-user')}
+              className={`btn btn-sm gap-2 ${
+                currentView === 'add-user' ? 'btn-primary' : 'btn-outline'
+              }`}
+            >
+              <UserPlus className="h-4 w-4" />
+              Add User
+            </button>
+            <button
+              onClick={() => onViewChange('search')}
+              className={`btn btn-sm gap-2 ${
+                currentView === 'search' ? 'btn-primary' : 'btn-outline'
+              }`}
+            >
+              <Search className="h-4 w-4" />
+              Search Users
+            </button>
+          </div>
+        </div>
+        
         {children}
       </main>
     </div>
